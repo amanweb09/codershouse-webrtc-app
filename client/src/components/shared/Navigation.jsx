@@ -7,7 +7,7 @@ import { setAuth } from '../../store/authSlice'
 const Navigation = () => {
 
   const dispatch = useDispatch()
-  const { isAuth } = useSelector((state) => state.auth)
+  const { isAuth, user } = useSelector((state) => state.auth)
 
   async function logoutUser() {
     try {
@@ -26,8 +26,15 @@ const Navigation = () => {
       </Link>
 
       {
-        isAuth && <button className="w-24 p-2 bg-blue-normal rounded-full font-bold" onClick={logoutUser}>Logout</button>
+        isAuth && <div className="flex items-center">
+          <span className="font-bold mr-2">{user.name}</span>
+          <Link to={'/'}>
+            <img src={user.avatar} className="h-12 w-12 border-2 border-solid border-blue-normal rounded-full" />
+          </Link>
+          <button className="w-24 p-2 ml-6 bg-blue-normal rounded-full font-bold" onClick={logoutUser}>Logout</button>
+        </div>
       }
+
     </nav>
   )
 }

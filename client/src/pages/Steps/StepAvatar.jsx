@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '../../components/shared/Button'
 import Card from '../../components/shared/Card'
 import Loader from '../../components/shared/Loader'
@@ -13,6 +13,7 @@ const StepAvatar = ({ onNext }) => {
   const { name, avatar } = useSelector((state) => state.activate)
   const [image, setImage] = useState('/images/avatar.png')
   const [loading, setLoading] = useState(false)
+  const [unmounted, setUnmounted] = useState(false)
 
   async function submit() {
     if (!name || !avatar) {
@@ -23,7 +24,9 @@ const StepAvatar = ({ onNext }) => {
     try {
       const { data } = await activate({ name, avatar: image })
       if (data.auth) {
-        dispatch(setAuth(data))
+        if(!unmounted) {
+          dispatch(setAuth(data))
+        }
       }
 
     } catch (error) {
@@ -34,6 +37,12 @@ const StepAvatar = ({ onNext }) => {
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    return () => {
+      setUnmounted(true)
+    }
+  }, [])
 
   function captureImage(e) {
     const files = e.target.files
