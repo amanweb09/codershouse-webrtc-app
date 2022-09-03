@@ -4,6 +4,7 @@ const router = require('express').Router()
 
 const authController = require('../controllers/auth-controller')
 const activateController = require('../controllers/activate-controller')
+const roomsController = require('../controllers/rooms-controller')
 
 const authenticate = require('../middleware/auth-middleware')
 
@@ -12,5 +13,7 @@ router.post('/api/verify-otp', authController.verifyOtp)
 router.post('/api/activate', authenticate, activateController.activate)
 router.get('/api/refresh', authenticate, authController.refresh)
 router.post('/api/logout', authenticate, authController.logout)
+router.post('/api/rooms', authenticate, roomsController.create)
+router.get('/api/rooms', authenticate, roomsController.index)
 
 module.exports = router

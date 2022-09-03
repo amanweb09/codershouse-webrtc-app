@@ -19,19 +19,24 @@ const Navigation = () => {
   }
 
   return (
-    <nav className='container mx-auto flex items-center justify-between py-4 sm:px-0 px-4'>
+    <nav className='container mx-auto flex items-center justify-between py-4 px-2 sm:px-0'>
       <Link to={'/'} className="flex items-center">
         <img src="/images/waving-hand.png" className="h-6 mr-2" />
-        <span className='font-bold'>Codershouse</span>
+        <span className='font-bold sm:text-base text-sm'>Codershouse</span>
       </Link>
 
       {
         isAuth && <div className="flex items-center">
-          <span className="font-bold mr-2">{user.name}</span>
-          <Link to={'/'}>
-            <img src={user.avatar} className="h-12 w-12 border-2 border-solid border-blue-normal rounded-full" />
-          </Link>
-          <button className="w-24 p-2 ml-6 bg-blue-normal rounded-full font-bold" onClick={logoutUser}>Logout</button>
+          <span className="font-bold mr-2 sm:text-base hidden sm:inline-block text-xs">{user?.name}</span>
+          {
+            user.avatar && <Link to={'/'}>
+              <img
+                src={user.avatar}
+                className="sm:h-12 sm:w-12 h-8 w-8 border-2 border-solid border-blue-normal rounded-full"
+                alt="avatar" />
+            </Link>
+          }
+          <button className="sm:w-24 w-16 p-2 sm:text-base text-xs sm:ml-6 ml-2 bg-blue-normal rounded-full font-bold" onClick={logoutUser}>Logout</button>
         </div>
       }
 
