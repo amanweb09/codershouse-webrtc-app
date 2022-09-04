@@ -34,6 +34,14 @@ class RoomsController {
         }
         return res.status(500).json({ err: "Couldn't fetch rooms" })
     }
+
+    async show(req, res) {
+        const room = await roomService.getRoom(req.params.roomId)
+        if(room) {
+            return res.status(200).json({ room })
+        }
+        return res.status(500).json({ err: "Couldn't fetch room" })
+    }
 }
 
 module.exports = new RoomsController()

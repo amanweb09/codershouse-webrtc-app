@@ -18,3 +18,4 @@ export const activate = (data) => { return api.post('/api/activate', data) }
 export const logout = () => { return api.post('/api/logout') }
 export const createRoom = (data) => { return api.post('/api/rooms', data) }
 export const getAllRooms = () => { return api.get('/api/rooms') }
+export const getRoom = (roomId) => { return api.get(`/api/rooms/${roomId}`) }

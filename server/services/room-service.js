@@ -29,6 +29,18 @@ class RoomService {
             return error
         }
     }
+
+    async getRoom(roomId) {
+        try {
+            return await Rooms
+                .findOne({ _id: roomId })
+                .populate('speakers')
+                .populate('ownerId')
+                .exec()
+        } catch (error) {
+            return error
+        }
+    }
 }
 
 module.exports = new RoomService()

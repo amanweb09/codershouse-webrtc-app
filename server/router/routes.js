@@ -15,5 +15,6 @@ router.get('/api/refresh', authenticate, authController.refresh)
 router.post('/api/logout', authenticate, authController.logout)
 router.post('/api/rooms', authenticate, roomsController.create)
 router.get('/api/rooms', authenticate, roomsController.index)
+router.get('/api/rooms/:roomId', authenticate, roomsController.show)
 
 module.exports = router
