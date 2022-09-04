@@ -16,9 +16,9 @@ input {
 .spinner {
     animation: loading 0.5s linear infinite;
 }
-.user_duplicate:nth-child(1) {
+/* .user_duplicate:nth-child(1) {
     display: none
-}
+} */
 
 @keyframes loading {
     100% {
